@@ -1,11 +1,12 @@
 using UnityEngine;
-using UnityEngine.Audio;
 
 public class AudioManager : MonoBehaviour
 {
     [SerializeField] private AudioSource musicSource, effectSource;
     public static AudioManager instance;
-    private void Awake()
+    private void Awake() => MakeInstance();
+
+    private void MakeInstance()
     {
         if (instance == null)
         {
@@ -17,7 +18,6 @@ public class AudioManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
     public void PlaySound(AudioClip clip)
     {
         effectSource.PlayOneShot(clip);

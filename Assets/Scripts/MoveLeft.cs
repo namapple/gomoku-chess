@@ -3,6 +3,12 @@ using UnityEngine;
 public class MoveLeft : MonoBehaviour
 {
     [SerializeField] private float speed = 4;
+    private Enemy enemy;
+
+    private void Awake()
+    {
+        enemy = GetComponent<Enemy>();
+    }
     void Update()
     {
         transform.Translate(speed * Time.deltaTime * Vector3.left, Space.World);
@@ -10,6 +16,7 @@ public class MoveLeft : MonoBehaviour
         {
             transform.position += new Vector3(30, 0, 0);
             ShowRandomSprite();
+            if (enemy != null) enemy.Respawn();
         }
     }
 
